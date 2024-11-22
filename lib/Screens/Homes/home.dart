@@ -1,5 +1,4 @@
 import 'package:Khmervie/Drawer_Widget/drawer.dart';
-import 'package:Khmervie/Screens/homes/components/findout.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/components/location.dart';
 import 'package:Khmervie/screens/homes/components/medical_services.dart';
