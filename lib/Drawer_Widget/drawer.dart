@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -6,8 +8,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: const EdgeInsets.all(0),
+      child: Column(
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
@@ -27,38 +28,11 @@ class CustomDrawer extends StatelessWidget {
               currentAccountPicture: const CircleAvatar(
                 backgroundColor: Colors.black,
                 child: Text(
-                  "A",
+                  "V",
                   style: TextStyle(fontSize: 30.0, color: Colors.blue),
                 ),
               ),
             ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('My Profile'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text('My Course'),
-              onTap: () {
-                Navigator.pop(context);
-              }),
-          ListTile(
-            leading: const Icon(Icons.workspace_premium),
-            title: const Text('Go Premium'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.video_label),
-            title: const Text('Saved Videos'),
-            onTap: () {
-              Navigator.pop(context);
-            },
           ),
           ListTile(
             leading: const Icon(Icons.edit),
@@ -68,11 +42,22 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Log out'),
+            leading: const Icon(Icons.workspace_premium),
+            title: const Text('Go Premium'),
             onTap: () {
               Navigator.pop(context);
             },
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Log out'),
+              onTap: () {
+                Get.to(() => const ());
+              },
+            ),
           ),
         ],
       ),
