@@ -13,8 +13,10 @@ class TemplateCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color.fromARGB(255, 102, 76, 175),
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
+        backgroundColor: Colors.grey[100],
+        iconTheme: const IconThemeData(color: Colors.green),
         title: Text(
           title,
           style: const TextStyle(color: Colors.green),
@@ -22,7 +24,9 @@ class TemplateCategory extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: content,
+        child: Center(
+          child: content,
+        ),
       ),
     );
   }

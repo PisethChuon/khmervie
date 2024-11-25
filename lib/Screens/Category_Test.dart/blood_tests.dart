@@ -1,4 +1,5 @@
 import 'package:Khmervie/Screens/Category_Test.dart/template.dart';
+import 'package:Khmervie/Screens/Homes/components/cards.dart';
 import 'package:flutter/material.dart';
 
 class BloodTests extends StatelessWidget {
@@ -6,13 +7,9 @@ class BloodTests extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TemplateCategory(
+    return TemplateCategory(
       title: 'Blood Tests',
-      content: Center(
-        child: Text(
-          'Blood Tests Session',
-        ),
-      ),
+      content: DoctorList(),
     );
   }
 }

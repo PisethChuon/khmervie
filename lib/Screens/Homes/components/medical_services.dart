@@ -1,4 +1,5 @@
 import 'package:Khmervie/Screens/Category_Test.dart/blood_tests.dart';
+import 'package:Khmervie/Screens/Homes/components/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ class MedicalServicesScreen extends StatelessWidget {
               {
                 'icon': Icons.water_drop,
                 'label': 'Blood Tests',
-                'onTap': () => Get.to(() => const BloodTests()),
+                'onTap': () => Get.to(() => BloodTests()),
               },
               {'icon': Icons.coronavirus, 'label': 'Covid-19', 'onTap': () {}},
               {
