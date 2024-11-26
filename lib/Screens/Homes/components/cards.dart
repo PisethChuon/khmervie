@@ -1,17 +1,71 @@
 import 'package:flutter/material.dart';
 
 class DoctorList extends StatelessWidget {
-  // Sample data for doctors
-  final List<Map<String, dynamic>> doctors = List.generate(
-    10,
-    (index) => {
-      "name": "Dr. John Doe ${index + 1}",
-      "experience": "${5 + index} Years Experience",
-      "image":
-          "https://via.placeholder.com/150", // Replace with actual URLs if available
-      "rating": 5, // Replace with dynamic rating if needed
+  DoctorList({super.key});
+
+  // Dynamic data for doctors
+  final List<Map<String, dynamic>> doctors = [
+    {
+      "name": "Dr. Emily Carter",
+      "experience": "12 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 4,
     },
-  );
+    {
+      "name": "Dr. Michael Smith",
+      "experience": "8 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 5,
+    },
+    {
+      "name": "Dr. Olivia Johnson",
+      "experience": "10 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 3,
+    },
+    {
+      "name": "Dr. James Anderson",
+      "experience": "6 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 5,
+    },
+    {
+      "name": "Dr. Sophia Martinez",
+      "experience": "15 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 4,
+    },
+    {
+      "name": "Dr. William Brown",
+      "experience": "9 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 4,
+    },
+    {
+      "name": "Dr. Mia Wilson",
+      "experience": "7 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 5,
+    },
+    {
+      "name": "Dr. Ethan Davis",
+      "experience": "11 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 3,
+    },
+    {
+      "name": "Dr. Ava Garcia",
+      "experience": "13 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 5,
+    },
+    {
+      "name": "Dr. Noah Wilson",
+      "experience": "5 Years Experience",
+      "image": "https://via.placeholder.com/150",
+      "rating": 4,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +91,13 @@ class DoctorCard extends StatelessWidget {
   final String imageUrl;
   final int rating;
 
-  DoctorCard({
+  const DoctorCard({
+    Key? key,
     required this.name,
     required this.experience,
     required this.imageUrl,
     required this.rating,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:Khmervie/Screens/Category_Test.dart/blood_tests.dart';
-import 'package:Khmervie/Screens/Homes/components/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +24,7 @@ class MedicalServicesScreen extends StatelessWidget {
               {
                 'icon': Icons.water_drop,
                 'label': 'Blood Tests',
-                'onTap': () => Get.to(() => BloodTests()),
+                'onTap': () => Get.to(() => const BloodTests()),
               },
               {'icon': Icons.coronavirus, 'label': 'Covid-19', 'onTap': () {}},
               {
@@ -49,7 +48,7 @@ class MedicalServicesScreen extends StatelessWidget {
               onTap: item['onTap'] as VoidCallback, // Detect tap and call onTap
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.green[50],
+                  color: const Color(0xFF34c759),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Column(

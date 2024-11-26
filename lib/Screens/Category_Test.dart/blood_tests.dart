@@ -1,5 +1,5 @@
 import 'package:Khmervie/Screens/Category_Test.dart/template.dart';
-import 'package:Khmervie/Screens/Homes/components/cards.dart';
+import 'package:Khmervie/Screens/Homes/components/card.dart';
 import 'package:flutter/material.dart';
 
 class BloodTests extends StatelessWidget {
