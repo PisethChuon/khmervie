@@ -1,3 +1,4 @@
+import 'package:Khmervie/Booking/show_modal_bottom.dart';
 import 'package:flutter/material.dart';
 
 class DoctorList extends StatelessWidget {
@@ -71,7 +72,7 @@ class DoctorCard extends StatelessWidget {
   final String name;
   final String experience;
   final String image;
-  final double rating; 
+  final double rating;
 
   @override
   Widget build(BuildContext context) {
@@ -92,14 +93,14 @@ class DoctorCard extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 1.0,
-                          )),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                      ),
                       child: CircleAvatar(
                         backgroundImage: AssetImage(image),
-                        
                         backgroundColor: Colors.white,
                         radius: 30,
                       ),
@@ -164,22 +165,20 @@ class DoctorCard extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                // Booking Bottom
                 ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Booked appointment for $name'),
-                      ),
-                    );
-                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
+                  onPressed: () {
+                    ShowModalBottom.display(context);
+                  },
                   child: const Text(
-                    "Book Now",
+                    'Book Now',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
