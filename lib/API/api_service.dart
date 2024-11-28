@@ -12,17 +12,4 @@ class ApiService {
       throw Exception("Failed to load users");
     }
   }
-
-  // Future<Map<String, dynamic>> createUser(String name, String role) async {
-  //   final response = await http.post(
-  //     Uri.parse("$baseUrl/users"),
-  //     headers: {"Content-Type": "application/json"},
-  //     body: jsonEncode({"name": name, "role": role}),
-  //   );
-  //   if (response.statusCode == 201) {
-  //     return jsonDecode(response.body);
-  //   } else {
-  //     throw Exception("Failed to create user");
-  //   }
-  // }
 }
