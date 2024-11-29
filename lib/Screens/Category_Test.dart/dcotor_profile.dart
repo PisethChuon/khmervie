@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
@@ -43,13 +44,20 @@ class DoctorProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset('assets/images/doctor_profile.png'),
-                      SizedBox(height: 10.0),
-                      Text(
-                        'Demo',
+                      const SizedBox(height: 10.0),
+                      const Text(
+                        'xxx',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize:
-                              20.0, // Adjust font size for better visibility
+                          color: Color(0XFF1C1C1E),
+                          fontSize: 32.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Text(
+                        'xxx, xxxxx',
+                        style: TextStyle(
+                          color: Color(0XFF1C1C1E),
+                          fontSize: 24.0,
                         ),
                       ),
                     ],
@@ -58,6 +66,99 @@ class DoctorProfileScreen extends StatelessWidget {
               ],
             ),
             // You can add more sections here below
+            const SizedBox(height: 75.0),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.access_time, color: Colors.green),
+                          SizedBox(width: 5),
+                          Text(
+                            "10.00 am - 3.00 pm",
+                            style: TextStyle(fontSize: 16.0),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.star, color: Colors.yellow),
+                          SizedBox(width: 5),
+                          Text(
+                            '4.5',
+                            style: TextStyle(fontSize: 16),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Experiene: 19 years',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        'Type : Surgeon',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s,',
+                    style: TextStyle(
+                        fontSize: 16, color: Color.fromARGB(255, 96, 96, 96)),
+                  ),
+                  const Text(
+                    'Speciality',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10.0),
+                  const Wrap(
+                    spacing: 10.0,
+                    runSpacing: 10.0,
+                    alignment: WrapAlignment.center,
+                    children: [
+                      Chip(label: Text('Dentistry')),
+                      Chip(label: Text('Surgery')),
+                      Chip(label: Text('Implantology')),
+                      Chip(label: Text('Paediatric')),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 80),
+                      ),
+                      onPressed: () {
+                        //
+                      },
+                      child: const Text(
+                        'Appointment',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
