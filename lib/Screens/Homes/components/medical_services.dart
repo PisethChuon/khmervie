@@ -68,8 +68,7 @@ class MedicalServicesScreen extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                  ],
-                  
+                  ],                  
                 ),
               ),
             );
