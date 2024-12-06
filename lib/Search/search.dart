@@ -35,58 +35,39 @@ class _SearchBarAppState extends State<SearchBarApp> {
               onTap: () {
                 controller.openView();
               },
-              
               onChanged: (_) {
                 controller.openView();
               },
-              
               leading: const Icon(Icons.search),
-              
-              trailing: <Widget> [
+              trailing: <Widget>[
                 Tooltip(
                   message: 'Change brightness mode',
                   child: IconButton(
-                    onPressed: ()
-                    {
+                    onPressed: () {
                       setState(() {
                         isDark = !isDark;
                       });
-                  }, 
-                  icon: const Icon(Icons.wb_sunny_outlined),
-                  selectedIcon: const Icon(Icons.brightness_2_outlined),
-                  )
+                    },
+                    icon: const Icon(Icons.wb_sunny_outlined),
+                    selectedIcon: const Icon(Icons.brightness_2_outlined),
+                  ),
                 )
-              ]
+              ],
             );
           }, suggestionsBuilder:
-                    (BuildContext context, SearchController controller) {
-                    return List<ListTile>.generate(5, (int index){
-                      final String item = 'Apple $index';
-                      return ListTile(
-                        title: Text(item),
-                        onTap: (){
-                          setState(() {
-                            controller.closeView(item);
-                          });
-                        },
-                      );
-                    });
-                    }),
-                    
-          //         (BuildContext context, SearchController controller) {
-          //   return List<ListTile>.generate(5, (int index) {
-          //     final String item = 'item $index';
-          //     return ListTile(
-          //       title: Text(item),
-          //       onTap: () {
-          //         setState(() {
-          //           controller.closeView(item);
-          //         });
-          //       },
-          //     );
-          //   });
-          // }),
-          
+                  (BuildContext context, SearchController controller) {
+            return List<ListTile>.generate(5, (int index) {
+              final String item = 'Apple $index';
+              return ListTile(
+                title: Text(item),
+                onTap: () {
+                  setState(() {
+                    controller.closeView(item);
+                  });
+                },
+              );
+            });
+          }),
         ),
       ),
     );
