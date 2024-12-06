@@ -2,7 +2,6 @@ import 'package:Khmervie/Drawer_Widget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/components/location.dart';
 import 'package:Khmervie/screens/homes/components/medical_services.dart';
-import '../../API/api_service.dart';
 class Homes extends StatefulWidget {
   const Homes({super.key});
 
