@@ -2,9 +2,15 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
-  final chipLabels = ['Dentistry', 'Surgery', 'Implanttology', 'Implantology', 'Paediatric'];
-  final chipColors = Color(0xff007AFF);
-  
+  final chipLabels = [
+    'Dentistry',
+    'Surgery',
+    'Implanttology',
+    'Implantology',
+    'Paediatric'
+  ];
+  final chipColors = Color(0xff34C759);
+
   DoctorProfileScreen({super.key});
 
   @override
@@ -73,7 +79,7 @@ class DoctorProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                
                 children: [
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,7 +104,6 @@ class DoctorProfileScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(height: 20),
                     ],
                   ),
                   const SizedBox(height: 20.0),
@@ -121,21 +126,24 @@ class DoctorProfileScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 16, color: Color.fromARGB(255, 96, 96, 96)),
                   ),
+                  const SizedBox(height: 32.0),
                   const Text(
                     'Speciality',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 10.0),
-                  const Wrap(
+                  const SizedBox(height: 32.0),
+                  Wrap(
                     spacing: 10.0,
                     runSpacing: 10.0,
-                    alignment: WrapAlignment.center,
-                    children: [
-                      Chip(label: Text('Dentistry')),
-                      Chip(label: Text('Surgery')),
-                      Chip(label: Text('Implantology')),
-                      Chip(label: Text('Paediatric')),
-                    ],
+                    alignment: WrapAlignment.spaceBetween,
+                    children: List.generate(
+                      chipLabels.length,
+                      (index) => Chip(
+                        label: Text(chipLabels[index]),
+                        backgroundColor: chipColors,
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 30),
                   Center(
@@ -148,7 +156,7 @@ class DoctorProfileScreen extends StatelessWidget {
                             vertical: 15, horizontal: 80),
                       ),
                       onPressed: () {
-                        //
+                        // សួស្ដី
                       },
                       child: const Text(
                         'Appointment',
@@ -168,4 +176,3 @@ class DoctorProfileScreen extends StatelessWidget {
     );
   }
 }
-
