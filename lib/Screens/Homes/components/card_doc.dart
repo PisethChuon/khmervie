@@ -12,36 +12,36 @@ class DoctorList extends StatelessWidget {
       "image": "assets/icons/Doctor_1.png",
       "rating": 5.0,
     },
-    // {
-    //   "name": "Dr. Emily Carter",
-    //   "experience": "12 Years Experience",
-    //   "image": "assets/icons/Doctor_1.png",
-    //   "rating": 3.0,
-    // },
-    // {
-    //   "name": "Dr. Jhon Dens",
-    //   "experience": "7 Years Experience",
-    //   "image": "assets/icons/Doctor_1.png",
-    //   "rating": 2.0,
-    // },
-    // {
-    //   "name": "Dr. Jhon Samit",
-    //   "experience": "20 Years Experience",
-    //   "image": "assets/icons/Doctor_1.png",
-    //   "rating": 5.0,
-    // },
-    // {
-    //   "name": "Dr. Dong Don",
-    //   "experience": "6 Years Experience",
-    //   "image": "assets/icons/Doctor_1.png",
-    //   "rating": 2.0,
-    // },
-    // {
-    //   "name": "Dr. Rash Meash",
-    //   "experience": "5 Years Experience",
-    //   "image": "assets/icons/Doctor_1.png",
-    //   "rating": 4.5,
-    // },
+    {
+      "name": "Dr. Emily Carter",
+      "experience": "12 Years Experience",
+      "image": "assets/icons/Doctor_1.png",
+      "rating": 3.0,
+    },
+    {
+      "name": "Dr. Jhon Dens",
+      "experience": "7 Years Experience",
+      "image": "assets/icons/Doctor_1.png",
+      "rating": 2.0,
+    },
+    {
+      "name": "Dr. Jhon Samit",
+      "experience": "20 Years Experience",
+      "image": "assets/icons/Doctor_1.png",
+      "rating": 5.0,
+    },
+    {
+      "name": "Dr. Dong Don",
+      "experience": "6 Years Experience",
+      "image": "assets/icons/Doctor_1.png",
+      "rating": 2.0,
+    },
+    {
+      "name": "Dr. Rash Meash",
+      "experience": "5 Years Experience",
+      "image": "assets/icons/Doctor_1.png",
+      "rating": 4.5,
+    },
   ];
 
   @override
