@@ -1,4 +1,4 @@
-import 'package:Khmervie/Screens/Category_Test.dart/blood_tests.dart';
+import 'package:Khmervie/Screens/Category_Test.dart/dynamicService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,21 +26,32 @@ class MedicalServicesScreen extends StatelessWidget {
                 'label': 'Blood Tests',
                 'onTap': () => Get.to(() => const BloodTests()),
               },
-              {'icon': Icons.coronavirus, 'label': 'Covid-19', 'onTap': () {}},
+              {
+                'icon': Icons.coronavirus,
+                'label': 'Covid-19',
+                'onTap': () => Get.to(() => const Coronavirus()),
+              },
               {
                 'icon': Icons.psychology,
                 'label': 'Mental Health',
-                'onTap': () {}
+                'onTap': () => Get.to(() => const MentalHealth()),
               },
               {
                 'icon': Icons.health_and_safety,
                 'label': 'HIV Tests',
-                'onTap': () {}
+                'onTap': () => Get.to(() => const HIV()),
               },
-              {'icon': Icons.child_care, 'label': 'Baby', 'onTap': () {}},
-              {'icon': Icons.hearing, 'label': 'Pure-tone', 'onTap': () {}},
+              {
+                'icon': Icons.child_care,
+                'label': 'Baby',
+                'onTap': () => Get.to(() => const Baby()),
+              },
+              {
+                'icon': Icons.hearing,
+                'label': 'Pure-tone',
+                'onTap': () => Get.to(() => const PureTone())
+              },
             ];
-
 
             final item = items[index];
 
@@ -69,7 +80,7 @@ class MedicalServicesScreen extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                  ],                  
+                  ],
                 ),
               ),
             );
