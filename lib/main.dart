@@ -66,3 +66,86 @@ class MyApp extends StatelessWidget {
 //     );
 //   }
 // }
+
+
+
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text('Demo Hunt Color', style: TextStyle(color: Colors.black)),
+//           backgroundColor: Colors.transparent, // Make AppBar background transparent
+//           elevation: 0, // Remove default AppBar shadow
+//         ),
+//         body: GradientBackground(),
+//       ),
+//     );
+//   }
+// }
+
+// class GradientBackground extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         gradient: LinearGradient(
+//           colors: [Colors.yellow.shade700, Colors.amber],
+//           begin: Alignment.bottomCenter,
+//           end: Alignment.topCenter,
+//         ),
+//       ),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: <Widget>[
+//           // Title
+//           Text(
+//             'Elevator Buttons',
+//             style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+//           ),
+//           SizedBox(height: 40),
+//           // Button 1
+//           ElevatedButton(
+//             onPressed: () {},
+//             child: Text('Button 1'),
+//             style: ElevatedButton.styleFrom(
+//               foregroundColor: Colors.black, backgroundColor: Colors.white,
+//               elevation: 5,
+//               shadowColor: Colors.amber,
+//             ),
+//           ),
+//           SizedBox(height: 20),
+//           // Button 2
+//           ElevatedButton(
+//             onPressed: () {},
+//             child: Text('Button 2'),
+//             style: ElevatedButton.styleFrom(
+//               foregroundColor: Colors.black, backgroundColor: Colors.white,
+//               elevation: 5,
+//               shadowColor: Colors.amber,
+//             ),
+//           ),
+//           SizedBox(height: 20),
+//           // Button 3
+//           ElevatedButton(
+//             onPressed: () {},
+//             child: Text('Button 3'),
+//             style: ElevatedButton.styleFrom(
+//               foregroundColor: Colors.black, backgroundColor: Colors.white,
+//               elevation: 5,
+//               shadowColor: Colors.amber,
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
