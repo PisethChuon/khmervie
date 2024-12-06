@@ -2,7 +2,10 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
-  const DoctorProfileScreen({super.key});
+  final chipLabels = ['Dentistry', 'Surgery', 'Implanttology', 'Implantology', 'Paediatric'];
+  final chipColors = Color(0xff007AFF);
+  
+  DoctorProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -165,3 +168,4 @@ class DoctorProfileScreen extends StatelessWidget {
     );
   }
 }
+
