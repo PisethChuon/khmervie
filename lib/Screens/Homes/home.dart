@@ -1,4 +1,5 @@
 import 'package:Khmervie/Drawer_Widget/drawer.dart';
+import 'package:Khmervie/Search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/components/location.dart';
 import 'package:Khmervie/screens/homes/components/medical_services.dart';
@@ -31,7 +32,7 @@ class _HomesState extends State<Homes> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(() => const SearchBar());
+                Get.to(() => const SearchBarApp());
               },
               icon: const Icon(Icons.search, color: Colors.black, size: 24))
         ],
