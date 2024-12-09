@@ -31,9 +31,11 @@ class _SearchBarAppState extends State<SearchBarApp> {
               padding: const WidgetStatePropertyAll<EdgeInsets>(
                   EdgeInsets.symmetric(horizontal: 16.0)),
               onTap: () {
+                print("Search bar tap");
                 controller.openView();
               },
               onChanged: (_) {
+                print("Search query: & query");
                 controller.openView();
               },
               leading: const Icon(Icons.search),
