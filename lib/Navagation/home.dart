@@ -1,4 +1,6 @@
 
+import 'package:Khmervie/Booking/booking_app.dart';
+import 'package:Khmervie/Screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/home.dart';
 
@@ -12,10 +14,10 @@ class HomeBarNavigator extends StatefulWidget {
 class _HomeBarNavigatorState extends State<HomeBarNavigator> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Homes(),
-    Text('Up comming'),
-    Text('Profile'),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Homes(),
+    BookingApp(),
+    const Text('Profile'),
   ];
 
   void _onItemTapped(int index) {

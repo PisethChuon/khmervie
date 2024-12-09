@@ -1,11 +1,9 @@
-
-import 'package:Khmervie/Booking/booking_app.dart';
 import 'package:Khmervie/Navagation/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
