@@ -2,6 +2,9 @@ import 'package:Khmervie/Drawer_Widget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/components/location.dart';
 import 'package:Khmervie/screens/homes/components/medical_services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 class Homes extends StatefulWidget {
   const Homes({super.key});
 
@@ -25,8 +28,12 @@ class _HomesState extends State<Homes> {
             color: Colors.black,
           ),
         ),
-        actions: const [
-          Icon(Icons.search, color: Colors.black, size: 24),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(() => const SearchBar());
+              },
+              icon: const Icon(Icons.search, color: Colors.black, size: 24))
         ],
       ),
       drawer: const CustomDrawer(), // Drawer is linked here
