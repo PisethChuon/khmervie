@@ -1,3 +1,4 @@
+import 'package:Khmervie/Booking/bookingCalendar.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/home.dart';
 
@@ -13,7 +14,7 @@ class _HomeBarNavigatorState extends State<HomeBarNavigator> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     Homes(),
-    Text(''),
+    BookingCalendarApp(),
     Text('Profile'),
   ];
 

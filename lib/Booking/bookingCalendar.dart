@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-
-class BookingCalendarDemoApp extends StatefulWidget {
-  const BookingCalendarDemoApp({Key? key}) : super(key: key);
+class BookingCalendarApp extends StatefulWidget {
+  const BookingCalendarApp({Key? key}) : super(key: key);
 
   @override
-  State<BookingCalendarDemoApp> createState() => _BookingCalendarDemoAppState();
+  State<BookingCalendarApp> createState() => _BookingCalendarDemoAppState();
 }
 
-class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
+class _BookingCalendarDemoAppState extends State<BookingCalendarApp> {
   final now = DateTime.now();
   late BookingService mockBookingService;
 
@@ -85,25 +84,26 @@ class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
           appBar: AppBar(
             title: const Text('Booking Calendar Demo'),
           ),
-          body: Center(
-            child: BookingCalendar(
-              bookingService: mockBookingService,
-              convertStreamResultToDateTimeRanges: convertStreamResultMock,
-              getBookingStream: getBookingStreamMock,
-              uploadBooking: uploadBookingMock,
-              pauseSlots: generatePauseSlots(),
-              pauseSlotText: 'LUNCH',
-              hideBreakTime: false,
-              loadingWidget: const Text('Fetching data...'),
-              uploadingWidget: const CircularProgressIndicator(),
-              locale: 'hu_HU',
-              startingDayOfWeek: StartingDayOfWeek.tuesday,
-              wholeDayIsBookedWidget:
-                  const Text('Sorry, for this day everything is booked'),
-              //disabledDates: [DateTime(2023, 1, 20)],
-              //disabledDays: [6, 7],
-            ),
-          ),
+          body: SingleChildScrollView(
+  child: Center(
+    child: BookingCalendar(
+      bookingService: mockBookingService,
+      convertStreamResultToDateTimeRanges: convertStreamResultMock,
+      getBookingStream: getBookingStreamMock,
+      uploadBooking: uploadBookingMock,
+      pauseSlots: generatePauseSlots(),
+      pauseSlotText: 'LUNCH',
+      hideBreakTime: false,
+      loadingWidget: const Text('Fetching data...'),
+      uploadingWidget: const CircularProgressIndicator(),
+      locale: 'hu_HU',
+      startingDayOfWeek: StartingDayOfWeek.tuesday,
+      wholeDayIsBookedWidget:
+          const Text('Sorry, for this day everything is booked'),
+    ),
+  ),
+)
+
         ));
   }
 }
