@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [SearchBar].
-
 void main() => runApp(const SearchBarApp());
 
 class SearchBarApp extends StatefulWidget {
