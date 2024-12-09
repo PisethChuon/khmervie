@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const SearchBarApp());
-
 class SearchBarApp extends StatefulWidget {
   const SearchBarApp({super.key});
 
@@ -57,7 +55,7 @@ class _SearchBarAppState extends State<SearchBarApp> {
           }, suggestionsBuilder:
                   (BuildContext context, SearchController controller) {
             return List<ListTile>.generate(5, (int index) {
-              final String item = 'Apple $index';
+              final String item = 'Test $index, Dr. Dens $index';
               return ListTile(
                 title: Text(item),
                 onTap: () {
