@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+// import '../Utils/util.dart';
+import 'package:Khmervie/Utils/util.dart';
+
 
 class BookingApp extends StatefulWidget {
   const BookingApp({super.key});
@@ -10,6 +13,7 @@ class BookingApp extends StatefulWidget {
 class _BookingAppState extends State<BookingApp> {
   @override
   DateTime _selectedDate = DateTime.now();
+  DateTime _currentMonth = DateTime.now();
 
   void _onDateSelected(DateTime date) {
     setState(() {
@@ -17,17 +21,25 @@ class _BookingAppState extends State<BookingApp> {
     });
   }
 
+  void _changeMonth(int delta) {
+    setState(() {
+      _currentMonth = DateTime(_currentMonth.year, _currentMonth.month + delta);
+    });
+  }
+
   List<Widget> _buildDaysOfWeek() {
     const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
     return daysOfWeek
-        .map((day) => Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(
-                day,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ))
+        .map(
+          (day) => Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              day,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        )
         .toList();
   }
 
@@ -84,6 +96,25 @@ class _BookingAppState extends State<BookingApp> {
       ),
       body: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () => _changeMonth(-1),
+                icon: const Icon(Icons.chevron_left),
+              ),
+              Text(
+                "${_currentMonth.year} - ${MyDateUtils.monthNames[_currentMonth.month - 1]}",
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                onPressed: () => _changeMonth(1),
+                icon: const Icon(Icons.chevron_right),
+              ),
+            ],
+          ),
+          // Display Calendar
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: _buildDaysOfWeek(),
