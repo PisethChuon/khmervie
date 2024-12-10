@@ -46,15 +46,37 @@ class _BookingAppState extends State<BookingApp> {
 
     for (int i = 1; i <= daysInMonth; i++) {
       final currentDate = DateTime(month.year, month.month, i);
-      dateWidgets.add(GestureDetector(
-        onTap: () => _onDateSelected(currentDate),
-      ));
+      dateWidgets.add(
+        GestureDetector(
+          onTap: () => _onDateSelected(currentDate),
+          child: Container(
+            alignment: Alignment.center,
+            margin: const EdgeInsets.all(4.0),
+            decoration: BoxDecoration(
+              color: _selectedDate == currentDate
+                  ? Colors.blue
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Text(
+              i.toString(),
+              style: TextStyle(
+                  color: _selectedDate == currentDate
+                      ? Colors.white
+                      : Colors.black),
+            ),
+          ),
+        ),
+      );
     }
 
     return dateWidgets;
   }
 
   Widget build(BuildContext context) {
+    final today = DateTime.now();
+    final currentMonth = DateTime(today.year, today.month);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Appointment'),
@@ -65,7 +87,13 @@ class _BookingAppState extends State<BookingApp> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: _buildDaysOfWeek(),
-          )
+          ),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 7,
+              children: _buildCalendarDates(currentMonth),
+            ),
+          ),
         ],
       ),
     );
