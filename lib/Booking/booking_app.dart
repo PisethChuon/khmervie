@@ -112,6 +112,7 @@ class _BookingAppState extends State<BookingApp> {
               ),
             ],
           ),
+          const SizedBox(height: 24.0,),
           // Display Calendar
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
