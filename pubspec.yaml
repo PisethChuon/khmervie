@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.6
+  local_auth: ^2.3.0
 
   cupertino_icons: ^1.0.8
   rename: ^3.0.2
