@@ -47,6 +47,8 @@ class _BookingAppState extends State<BookingApp> {
     final daysInMonth = lastDayOfMonth.day;
     final startingWeekday = firstDayOfMonth.weekday % 7;
 
+    final today = DateTime.now(); // Get today's date
+
     List<Widget> dateWidgets = [];
     int dayCounter = 1;
 
