@@ -13,10 +13,12 @@ class _BookingAppState extends State<BookingApp> {
   DateTime _selectedDate = DateTime.now();
   DateTime _currentMonth = DateTime.now();
 
+// On Date Seleted
   void _onDateSelected(DateTime date) {
-    setState(() {
-      _selectedDate = date;
-    });
+    final today = DateTime.now();
+
+
+
   }
 
   void _changeMonth(int delta) {
@@ -70,7 +72,7 @@ class _BookingAppState extends State<BookingApp> {
             margin: const EdgeInsets.all(4.0),
             decoration: BoxDecoration(
               color: _selectedDate == currentDate
-                  ? Colors.blue // Seleted date
+                  ? Colors.green // Seleted date
                   : isToday
                       ? Colors.blue
                       : Colors.transparent,
