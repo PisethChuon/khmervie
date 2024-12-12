@@ -112,16 +112,24 @@ class _BookingAppState extends State<BookingApp> {
               ),
             ],
           ),
-          const SizedBox(height: 24.0,),
+          const SizedBox(
+            height: 24.0,
+          ),
           // Display Calendar
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: _buildDaysOfWeek(),
           ),
           Expanded(
-            child: GridView.count(
-              crossAxisCount: 7,
-              children: _buildCalendarDates(currentMonth),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 7,
+                crossAxisSpacing: 4.0,
+                mainAxisSpacing: 4.0,
+              ),
+              itemCount: _buildCalendarDates(_currentMonth).length,
+              itemBuilder: (context, index) =>
+                  _buildCalendarDates(_currentMonth)[index],
             ),
           ),
         ],
