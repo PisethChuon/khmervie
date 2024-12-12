@@ -58,6 +58,10 @@ class _BookingAppState extends State<BookingApp> {
 
     for (int i = 1; i <= daysInMonth; i++) {
       final currentDate = DateTime(month.year, month.month, i);
+      final isToday = today.year == currentDate.year &&
+          today.month == currentDate.month &&
+          today.day == currentDate.day;
+
       dateWidgets.add(
         GestureDetector(
           onTap: () => _onDateSelected(currentDate),
@@ -66,16 +70,22 @@ class _BookingAppState extends State<BookingApp> {
             margin: const EdgeInsets.all(4.0),
             decoration: BoxDecoration(
               color: _selectedDate == currentDate
-                  ? Colors.blue
-                  : Colors.transparent,
+                  ? Colors.blue // Seleted date
+                  : isToday
+                      ? Colors.blue
+                      : Colors.transparent,
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Text(
               i.toString(),
               style: TextStyle(
-                  color: _selectedDate == currentDate
-                      ? Colors.white
-                      : Colors.black),
+                color: _selectedDate == currentDate
+                    ? Colors.white // Text color for selected date
+                    : isToday
+                        ? Colors.white
+                        : Colors.black,
+                fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+              ),
             ),
           ),
         ),
