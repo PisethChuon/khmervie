@@ -14,28 +14,28 @@ class _BookingAppState extends State<BookingApp> {
   DateTime _currentMonth = DateTime.now();
 
 // On Date Seleted
-  void _onDateSelected(DateTime date) {
-    final today = DateTime.now();
-    final lastDayOfThisMonth = DateTime(today.year, today.month + 1);
-    final firstDayOfNextMonth = DateTime(today.year, today.month);
-    final lastDayOfNextMonth = DateTime(today.year, today.month);
+void _onDateSelected(DateTime date) {
+  final today = DateTime.now();
+  final firstDayOfNextMonth = DateTime(today.year, today.month + 1, 1);
+  final lastDayOfNextMonth = DateTime(today.year, today.month + 2, 0);
 
-    // Check if the selected date is valid (today, days in current month, and the entire next month)
-if ((date.isAfter(today.subtract(const Duration(days: 1))) && date.isBefore(lastDayOfThisMonth.add(const Duration(days: 1)))) ||
-    (date.isAfter(firstDayOfNextMonth.subtract(const Duration(days: 1))) && date.isBefore(lastDayOfNextMonth.add(const Duration(days: 1))))) {
-  setState(() {
-    _selectedDate = date; // Update only for valid dates
-  });
-} else {
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text('You can only select today, days in the current month, or dates in the next month!'),
-    ),
-  );
+  // Check if the selected date is valid
+  if (date.isAtSameMomentAs(DateTime(today.year, today.month, today.day)) ||
+      (date.isAfter(firstDayOfNextMonth.subtract(const Duration(days: 1))) &&
+       date.isBefore(lastDayOfNextMonth.add(const Duration(days: 1))))) {
+    setState(() {
+      _selectedDate = date; // Update only for valid dates
+    });
+  } else {
+    // Show a message for invalid date selection
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('You can only select today or a date in the next month!'),
+      ),
+    );
+  }
 }
 
-
-  }
 
   void _changeMonth(int delta) {
     setState(() {
@@ -84,7 +84,7 @@ if ((date.isAfter(today.subtract(const Duration(days: 1))) && date.isBefore(last
         GestureDetector(
           onTap: () => _onDateSelected(currentDate),
           child: Container(
-            alignment: Alignment.center,
+            transformAlignment: Alignment.center,
             margin: const EdgeInsets.all(4.0),
             decoration: BoxDecoration(
               color: _selectedDate == currentDate
