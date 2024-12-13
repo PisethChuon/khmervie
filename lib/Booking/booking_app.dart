@@ -16,7 +16,23 @@ class _BookingAppState extends State<BookingApp> {
 // On Date Seleted
   void _onDateSelected(DateTime date) {
     final today = DateTime.now();
+    final lastDayOfThisMonth = DateTime(today.year, today.month + 1);
+    final firstDayOfNextMonth = DateTime(today.year, today.month);
+    final lastDayOfNextMonth = DateTime(today.year, today.month);
 
+    // Check if the selected date is valid (today, days in current month, and the entire next month)
+if ((date.isAfter(today.subtract(const Duration(days: 1))) && date.isBefore(lastDayOfThisMonth.add(const Duration(days: 1)))) ||
+    (date.isAfter(firstDayOfNextMonth.subtract(const Duration(days: 1))) && date.isBefore(lastDayOfNextMonth.add(const Duration(days: 1))))) {
+  setState(() {
+    _selectedDate = date; // Update only for valid dates
+  });
+} else {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('You can only select today, days in the current month, or dates in the next month!'),
+    ),
+  );
+}
 
 
   }
