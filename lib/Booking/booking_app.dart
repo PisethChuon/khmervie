@@ -14,28 +14,26 @@ class _BookingAppState extends State<BookingApp> {
   DateTime _currentMonth = DateTime.now();
 
 // On Date Seleted
-void _onDateSelected(DateTime date) {
-  final today = DateTime.now();
-  final firstDayOfNextMonth = DateTime(today.year, today.month + 1, 1);
-  final lastDayOfNextMonth = DateTime(today.year, today.month + 2, 0);
+  void _onDateSelected(DateTime date) {
+    final today = DateTime.now();
+    final thirtyDaysLater =
+        today.add(const Duration(days: 30)); // 30 days from today
 
-  // Check if the selected date is valid
-  if (date.isAtSameMomentAs(DateTime(today.year, today.month, today.day)) ||
-      (date.isAfter(firstDayOfNextMonth.subtract(const Duration(days: 1))) &&
-       date.isBefore(lastDayOfNextMonth.add(const Duration(days: 1))))) {
-    setState(() {
-      _selectedDate = date; // Update only for valid dates
-    });
-  } else {
-    // Show a message for invalid date selection
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('You can only select today or a date in the next month!'),
-      ),
-    );
+    // Check if the selected date is within the range from today to 30 days later
+    if (date.isAfter(today.subtract(const Duration(days: 1))) &&
+        date.isBefore(thirtyDaysLater.add(const Duration(days: 1)))) {
+      setState(() {
+        _selectedDate = date; // Update only for valid dates
+      });
+    } else {
+      // Show a message for invalid date selection
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('You can only select today and the next 30 days!'),
+        ),
+      );
+    }
   }
-}
-
 
   void _changeMonth(int delta) {
     setState(() {
@@ -84,7 +82,7 @@ void _onDateSelected(DateTime date) {
         GestureDetector(
           onTap: () => _onDateSelected(currentDate),
           child: Container(
-            transformAlignment: Alignment.center,
+            alignment: Alignment.center,
             margin: const EdgeInsets.all(4.0),
             decoration: BoxDecoration(
               color: _selectedDate == currentDate
