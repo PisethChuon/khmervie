@@ -28,10 +28,16 @@ class _BookingAppState extends State<BookingApp> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildDropdownMenu(),
-          const SizedBox(height: 16),
+          const SizedBox(height: 16.0),
           _buildCalendar(),
-          const SizedBox(height: 16),
+          const SizedBox(height: 16.0),
           _morningSlots(),
+          const SizedBox(height: 16.0),
+          _afternoonSlots(),
+          const SizedBox(height: 16.0),
+          _everningSlots(),
+          const SizedBox(height: 16.0),
+          _confirmAppointment(),
         ],
       ),
     );
@@ -105,7 +111,93 @@ class _BookingAppState extends State<BookingApp> {
 
   // Widget for Morning Slots
   Widget _morningSlots() {
-    return const Padding(
-        padding: EdgeInsets.all(8.0), child: Chip(label: Text('10.10 AM')));
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Morning Slots',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 24.0,
+          ),
+          Wrap(
+              spacing: 8.0,
+              runSpacing: 4.0,
+              children: List.generate(5, (index) {
+                return Chip(label: Text('${(index + 1)}:00 AM'));
+              })),
+        ],
+      ),
+    );
+  }
+
+  Widget _afternoonSlots() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Afternoon Slots',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          Wrap(
+              spacing: 8.0,
+              runSpacing: 4.0,
+              children: List.generate(4, (index) {
+                return Chip(label: Text('${(index)}: 00 AM'));
+              }))
+        ],
+      ),
+    );
+  }
+
+  Widget _everningSlots() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Evening Slots',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          Wrap(
+              spacing: 8.0,
+              runSpacing: 4.0,
+              children: List.generate(4, (index) {
+                return Chip(label: Text('${(index)}: 00 AM'));
+              }))
+        ],
+      ),
+    );
+  }
+
+  Widget _confirmAppointment() {
+    return Padding(
+      
+      padding: EdgeInsets.all(16.0),
+      child: Container(
+        child: ElevatedButton(
+          style: ButtonStyle(
+            
+          ),
+            onPressed: () {}, child: Text('Confirm Appointment')),
+      ),
+    );
   }
 }
