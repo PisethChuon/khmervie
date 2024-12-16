@@ -15,25 +15,6 @@ class _BookingAppState extends State<BookingApp> {
 
 // On Date Seleted
   void _onDateSelected(DateTime date) {
-    // final today = DateTime.now();
-    // final thirtyDaysLater =
-    //     today.add(const Duration(`days`: 30)); // 30 days from today
-
-    // // Check if the selected date is within the range from today to 30 days later
-    // if (date.isAfter(today.subtract(const Duration(days: 1))) &&
-    //     date.isBefore(thirtyDaysLater.add(const Duration(days: 1)))) {
-    //   setState(() {
-    //     _selectedDate = date; // Update only for valid dates
-    //   });
-    // } else {
-    //   // Show a message for invalid date selection
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(
-    //       content: Text('You can only select today and the next 30 days!'),
-    //     ),
-    //   );
-    // }
-
     final today = DateTime.now();
     final thirtyDaysLater = today.add(const Duration(days: 30));
 
