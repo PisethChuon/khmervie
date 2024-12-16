@@ -9,14 +9,49 @@ class BookingApp extends StatefulWidget {
 }
 
 class _BookingAppState extends State<BookingApp> {
+  @override
   String dropdownValue = 'December';
 
-  // Dropdown menu options
-  final List<String> months = ['December', 'January'];
-
   // Calendar data
-  final List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
-  final List<String> dates = ['01', '02', '03', '04', '05', '06', '07', '08'];
+  List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
+  List<String> dates = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _generateCurrentMonthDates();
+  }
+
+  // Generate the dates for the current month dynamically
+  void _generateCurrentMonthDates() {
+    DateTime today = DateTime.now();
+    DateTime firstDayOfMonth = DateTime(today.year, today.month, 1);
+    int daysInMonth = _daysInMonth(firstDayOfMonth.year, firstDayOfMonth.month);
+
+    // List to store the dates
+    List<String> newDates = [];
+
+    // Generate date strings for the current month
+    for (int i = 1; i <= daysInMonth; i++) {
+      newDates.add(i.toString().padLeft(2, '0'));
+    }
+
+    setState(() {
+      dates = newDates;
+    });
+  }
+
+  // Helper function to get the number of days in a month
+  int _daysInMonth(int year, int month) {
+    switch (month) {
+      case 2: 
+        return (DateTime(year, month + 1, 0).day == 29) ? 29 : 28;
+        case 4: case 6: case 9: case 11:
+        return 30;
+      default:
+        return 31;
+    }
+  }
 
   int isSelectedDayIndex = 2;
 
@@ -119,6 +154,30 @@ class _BookingAppState extends State<BookingApp> {
     );
   }
 
+  Widget _slotSection({required String title, required List<String> times}) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 4.0,
+            children: times.map((time) => Chip(label: Text(time))).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
   // Morning Slots
   Widget _morningSlots() {
     return _slotSection(
@@ -144,30 +203,6 @@ class _BookingAppState extends State<BookingApp> {
   }
 
   // Slot Section Template
-  Widget _slotSection({required String title, required List<String> times}) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          Wrap(
-            spacing: 8.0,
-            runSpacing: 4.0,
-            children: times.map((time) => Chip(label: Text(time))).toList(),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _confirmAppointment() {
     return Center(
       child: ElevatedButton(
