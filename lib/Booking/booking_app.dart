@@ -30,6 +30,8 @@ class _BookingAppState extends State<BookingApp> {
           _buildDropdownMenu(),
           const SizedBox(height: 16),
           _buildCalendar(),
+          const SizedBox(height: 16),
+          _morningSlots(),
         ],
       ),
     );
@@ -99,5 +101,11 @@ class _BookingAppState extends State<BookingApp> {
         },
       ),
     );
+  }
+
+  // Widget for Morning Slots
+  Widget _morningSlots() {
+    return const Padding(
+        padding: EdgeInsets.all(8.0), child: Chip(label: Text('10.10 AM')));
   }
 }
