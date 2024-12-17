@@ -24,25 +24,21 @@ class _BookingAppState extends State<BookingApp> {
 
   // Generate the dates for the current month dynamically
   void _generate30DayCycleDates() {
-    DateTime now = DateTime.now();
-    // int today = now.day;
-    // DateTime firstDayOfMonth = DateTime(today.year, today.month, 1);
-    // int daysInMonth = _daysInMonth(now.year, now.month);
-
-    // List to store the dates
+    DateTime now = DateTime.now(); // Current date
     List<String> newDates = [];
 
-    // Generate date strings for the current month
+    // Generate 30 consecutive days starting from today
     for (int i = 0; i < 30; i++) {
-      DateTime date = now.add(Duration(days: i)); // Add 'i' for current day
-      String day = days[date.weekday % 7]; // Get day name
+      DateTime date =
+          now.add(Duration(days: i)); // Add 'i' days to the current day
+      String day = days[date.weekday % 7]; // Get day name (Sun, Mon, ...)
       String dateFormatted = "${date.day.toString().padLeft(2, '0')}";
 
       newDates.add("$day $dateFormatted"); // Combine day name and date
     }
 
     setState(() {
-      dates = newDates;
+      dates = newDates; // Update the list with 30 days
     });
   }
 
