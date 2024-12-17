@@ -14,3 +14,4 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(home: HomeBarNavigator());
   }
 }
+
