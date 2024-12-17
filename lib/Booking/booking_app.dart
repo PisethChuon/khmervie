@@ -19,22 +19,26 @@ class _BookingAppState extends State<BookingApp> {
   @override
   void initState() {
     super.initState();
-    _generateCurrentMonthDates();
+    _generate30DayCycleDates();
   }
 
   // Generate the dates for the current month dynamically
-  void _generateCurrentMonthDates() {    
+  void _generate30DayCycleDates() {
     DateTime now = DateTime.now();
-    int today = now.day;
+    // int today = now.day;
     // DateTime firstDayOfMonth = DateTime(today.year, today.month, 1);
-    int daysInMonth = _daysInMonth(now.year, now.month);
+    // int daysInMonth = _daysInMonth(now.year, now.month);
 
     // List to store the dates
     List<String> newDates = [];
 
     // Generate date strings for the current month
-    for (int i = today; i <= daysInMonth; i++) {
-      newDates.add(i.toString().padLeft(2, '0'));
+    for (int i = 0; i < 30; i++) {
+      DateTime date = now.add(Duration(days: i)); // Add 'i' for current day
+      String day = days[date.weekday % 7]; // Get day name
+      String dateFormatted = "${date.day.toString().padLeft(2, '0')}";
+
+      newDates.add("$day $dateFormatted"); // Combine day name and date
     }
 
     setState(() {
@@ -45,9 +49,12 @@ class _BookingAppState extends State<BookingApp> {
   // Helper function to get the number of days in a month
   int _daysInMonth(int year, int month) {
     switch (month) {
-      case 2: 
+      case 2:
         return (DateTime(year, month + 1, 0).day == 29) ? 29 : 28;
-        case 4: case 6: case 9: case 11:
+      case 4:
+      case 6:
+      case 9:
+      case 11:
         return 30;
       default:
         return 31;
@@ -111,10 +118,12 @@ class _BookingAppState extends State<BookingApp> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
-        
         itemBuilder: (context, index) {
           int dayNumber = int.parse(dates[index]);
-          String dayName = days[DateTime(DateTime.now().year, DateTime.now().month, dayNumber).weekday % 7];
+          String dayName = days[
+              DateTime(DateTime.now().year, DateTime.now().month, dayNumber)
+                      .weekday %
+                  7];
           return GestureDetector(
             onTap: () {
               // Handle date selection here
@@ -132,7 +141,7 @@ class _BookingAppState extends State<BookingApp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    dayName,  // Repeat days based on the current day of the week
+                    dayName, // Repeat days based on the current day of the week
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
