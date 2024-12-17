@@ -15,6 +15,7 @@ class _BookingAppState extends State<BookingApp> {
   List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
   List<String> dates = [];
 
+  // Declear varialble
   final ScrollController _scrollController = ScrollController();
   String currentMonth = '';
 
@@ -25,12 +26,14 @@ class _BookingAppState extends State<BookingApp> {
     _scrollController.addListener(_onScroll);
 
     setState(() {
-      currentMonth = '${_monthName(DateTime.now().month)} ${DateTime.now().year}';
+      currentMonth =
+          '${_monthName(DateTime.now().month)} ${DateTime.now().year}';
     });
   }
 
   void _onScroll() {
     // Estimate the visible index based on the scroll offset
+
     int visibleIndex = (_scrollController.offset / 80).floor();
     if (visibleIndex >= 0 && visibleIndex < dates.length) {
       String newMonth = _getMonthFromIndex(visibleIndex);
@@ -53,17 +56,17 @@ class _BookingAppState extends State<BookingApp> {
     // Convert month number to name
     List<String> monthNames = [
       'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December'
     ];
     return monthNames[month - 1];
   }
@@ -111,7 +114,7 @@ class _BookingAppState extends State<BookingApp> {
               ),
             ),
           ),
-          
+
           const SizedBox(height: 16.0),
           _buildCalendar(),
           const SizedBox(height: 8.0),
@@ -257,7 +260,7 @@ class _BookingAppState extends State<BookingApp> {
   // Slot Section Template
   Widget _confirmAppointment() {
     return Center(
-      child: ElevatedButton( 
+      child: ElevatedButton(
         onPressed: () {
           // TODO: Implement appointment confirmation logic
           ScaffoldMessenger.of(context).showSnackBar(
