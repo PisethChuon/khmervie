@@ -23,8 +23,9 @@ class _BookingAppState extends State<BookingApp> {
   }
 
   // Generate the dates for the current month dynamically
-  void _generateCurrentMonthDates() {
+  void _generateCurrentMonthDates() {    
     DateTime today = DateTime.now();
+    // int today = now.day;
     DateTime firstDayOfMonth = DateTime(today.year, today.month, 1);
     int daysInMonth = _daysInMonth(firstDayOfMonth.year, firstDayOfMonth.month);
 
@@ -32,7 +33,7 @@ class _BookingAppState extends State<BookingApp> {
     List<String> newDates = [];
 
     // Generate date strings for the current month
-    for (int i = 1; i <= daysInMonth; i++) {
+    for (int i = today; i <= daysInMonth; i++) {
       newDates.add(i.toString().padLeft(2, '0'));
     }
 
@@ -65,43 +66,43 @@ class _BookingAppState extends State<BookingApp> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildDropdownMenu(),
+          // _buildDropdownMenu(),
           const SizedBox(height: 16.0),
           _buildCalendar(),
-          const SizedBox(height: 8.0),
-          _morningSlots(),
-          const SizedBox(height: 8.0),
-          _afternoonSlots(),
-          const SizedBox(height: 8.0),
-          _eveningSlots(),
-          const SizedBox(height: 16.0),
-          _confirmAppointment(),
+          // const SizedBox(height: 8.0),
+          // _morningSlots(),
+          // const SizedBox(height: 8.0),
+          // _afternoonSlots(),
+          // const SizedBox(height: 8.0),
+          // _eveningSlots(),
+          // const SizedBox(height: 16.0),
+          // _confirmAppointment(),
         ],
       ),
     );
   }
 
   // Widget for the dropdown menu
-  Widget _buildDropdownMenu() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: DropdownButton<String>(
-        value: dropdownValue,
-        icon: const Icon(Icons.keyboard_arrow_down),
-        items: months.map((String month) {
-          return DropdownMenuItem(
-            value: month,
-            child: Text(month),
-          );
-        }).toList(),
-        onChanged: (String? newValue) {
-          setState(() {
-            dropdownValue = newValue!;
-          });
-        },
-      ),
-    );
-  }
+  // Widget _buildDropdownMenu() {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+  //     child: DropdownButton<String>(
+  //       value: dropdownValue,
+  //       icon: const Icon(Icons.keyboard_arrow_down),
+  //       items: months.map((String month) {
+  //         return DropdownMenuItem(
+  //           value: month,
+  //           child: Text(month),
+  //         );
+  //       }).toList(),
+  //       onChanged: (String? newValue) {
+  //         setState(() {
+  //           dropdownValue = newValue!;
+  //         });
+  //       },
+  //     ),
+  //   );
+  // }
 
   // Widget for the calendar
   Widget _buildCalendar() {
@@ -109,38 +110,34 @@ class _BookingAppState extends State<BookingApp> {
       height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: days.length,
+        itemCount: dates.length,
         itemBuilder: (context, index) {
-          final isSelected = index == isSelectedDayIndex;
-
           return GestureDetector(
             onTap: () {
-              setState(() {
-                isSelectedDayIndex = index;
-              });
+              // Handle date selection here
+              print("Selected date: ${dates[index]}");
             },
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
               width: 60,
               decoration: BoxDecoration(
-                color: isSelected ? Colors.green : Colors.transparent,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black, width: 1),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    days[index],
-                    style: TextStyle(
-                      color: isSelected ? Colors.white : Colors.black,
+                    days[index % 7],  // Repeat days based on the current day of the week
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     dates[index],
-                    style: TextStyle(
-                      color: isSelected ? Colors.white : Colors.black,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
