@@ -9,17 +9,63 @@ class BookingApp extends StatefulWidget {
 }
 
 class _BookingAppState extends State<BookingApp> {
-  @override
   String dropdownValue = 'December';
 
   // Calendar data
   List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
   List<String> dates = [];
 
+  final ScrollController _scrollController = ScrollController();
+  String currentMonth = '';
+
   @override
   void initState() {
     super.initState();
     _generate30DayCycleDates();
+    _scrollController.addListener(_onScroll);
+
+    setState(() {
+      currentMonth = '${_monthName(DateTime.now().month)} ${DateTime.now().year}';
+    });
+  }
+
+  void _onScroll() {
+    // Estimate the visible index based on the scroll offset
+    int visibleIndex = (_scrollController.offset / 80).floor();
+    if (visibleIndex >= 0 && visibleIndex < dates.length) {
+      String newMonth = _getMonthFromIndex(visibleIndex);
+      if (newMonth != currentMonth) {
+        setState(() {
+          currentMonth = newMonth;
+        });
+      }
+    }
+  }
+
+  String _getMonthFromIndex(int index) {
+    // Calculate the corresponding date and month
+    DateTime now = DateTime.now();
+    DateTime date = now.add(Duration(days: index));
+    return '${_monthName(date.month)} ${date.year}';
+  }
+
+  String _monthName(int month) {
+    // Convert month number to name
+    List<String> monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+    return monthNames[month - 1];
   }
 
   // Generate the dates for the current month dynamically
@@ -42,74 +88,47 @@ class _BookingAppState extends State<BookingApp> {
     });
   }
 
-  // Helper function to get the number of days in a month
-  int _daysInMonth(int year, int month) {
-    switch (month) {
-      case 2:
-        return (DateTime(year, month + 1, 0).day == 29) ? 29 : 28;
-      case 4:
-      case 6:
-      case 9:
-      case 11:
-        return 30;
-      default:
-        return 31;
-    }
-  }
-
   int isSelectedDayIndex = 2;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Apointment'),
+        title: Text('Appointment'),
         centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // _buildDropdownMenu(),
+          // Display the current month
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              currentMonth.isEmpty ? 'Loading...' : currentMonth,
+              style: const TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          
           const SizedBox(height: 16.0),
           _buildCalendar(),
-          // const SizedBox(height: 8.0),
-          // _morningSlots(),
-          // const SizedBox(height: 8.0),
-          // _afternoonSlots(),
-          // const SizedBox(height: 8.0),
-          // _eveningSlots(),
-          // const SizedBox(height: 16.0),
+          const SizedBox(height: 8.0),
+          _morningSlots(),
+          const SizedBox(height: 8.0),
+          _afternoonSlots(),
+          const SizedBox(height: 8.0),
+          _eveningSlots(),
+          const SizedBox(height: 16.0),
           // _confirmAppointment(),
         ],
       ),
     );
   }
 
-  // Widget for the dropdown menu
-  // Widget _buildDropdownMenu() {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-  //     child: DropdownButton<String>(
-  //       value: dropdownValue,
-  //       icon: const Icon(Icons.keyboard_arrow_down),
-  //       items: months.map((String month) {
-  //         return DropdownMenuItem(
-  //           value: month,
-  //           child: Text(month),
-  //         );
-  //       }).toList(),
-  //       onChanged: (String? newValue) {
-  //         setState(() {
-  //           dropdownValue = newValue!;
-  //         });
-  //       },
-  //     ),
-  //   );
-  // }
-
   // Widget for the calendar
   int? selectedIndex;
-  @override
   Widget _buildCalendar() {
     return SizedBox(
       height: 120,
@@ -124,6 +143,7 @@ class _BookingAppState extends State<BookingApp> {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: dates.length,
+            controller: _scrollController,
             itemBuilder: (context, index) {
               int dayNumber = int.parse(dates[index]);
               String dayName = days[
@@ -146,7 +166,7 @@ class _BookingAppState extends State<BookingApp> {
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? Colors.blue // Blue background for selected date
+                        ? Colors.green // Green background for selected date
                         : Colors
                             .transparent, // Transparent background for unselected
                     borderRadius: BorderRadius.circular(12),
@@ -221,8 +241,8 @@ class _BookingAppState extends State<BookingApp> {
   // Afternoon Slots
   Widget _afternoonSlots() {
     return _slotSection(
-      title: 'Afternoo Slots',
-      times: List.generate(5, (index) => '${index + 1}: 00 PM'),
+      title: 'Afternoon Slots',
+      times: List.generate(5, (index) => '${index + 1}:00 PM'),
     );
   }
 
@@ -230,15 +250,20 @@ class _BookingAppState extends State<BookingApp> {
   Widget _eveningSlots() {
     return _slotSection(
       title: 'Evening Slots',
-      times: List.generate(3, (index) => '${index + 6}: 00 PM'),
+      times: List.generate(3, (index) => '${index + 6}:00 PM'),
     );
   }
 
   // Slot Section Template
   Widget _confirmAppointment() {
     return Center(
-      child: ElevatedButton(
-        onPressed: () {},
+      child: ElevatedButton( 
+        onPressed: () {
+          // TODO: Implement appointment confirmation logic
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Appointment Confirmation Pressed')),
+          );
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green, // Set the button color to green
           padding: const EdgeInsets.symmetric(
