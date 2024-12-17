@@ -34,7 +34,7 @@ class _BookingAppState extends State<BookingApp> {
       String day = days[date.weekday % 7]; // Get day name (Sun, Mon, ...)
       String dateFormatted = "${date.day.toString().padLeft(2, '0')}";
 
-      newDates.add("$day $dateFormatted"); // Combine day name and date
+      newDates.add("$dateFormatted"); // Combine day name and date
     }
 
     setState(() {
@@ -116,6 +116,7 @@ class _BookingAppState extends State<BookingApp> {
         itemCount: dates.length,
         itemBuilder: (context, index) {
           int dayNumber = int.parse(dates[index]);
+
           String dayName = days[
               DateTime(DateTime.now().year, DateTime.now().month, dayNumber)
                       .weekday %
