@@ -24,10 +24,10 @@ class _BookingAppState extends State<BookingApp> {
 
   // Generate the dates for the current month dynamically
   void _generateCurrentMonthDates() {    
-    DateTime today = DateTime.now();
-    // int today = now.day;
-    DateTime firstDayOfMonth = DateTime(today.year, today.month, 1);
-    int daysInMonth = _daysInMonth(firstDayOfMonth.year, firstDayOfMonth.month);
+    DateTime now = DateTime.now();
+    int today = now.day;
+    // DateTime firstDayOfMonth = DateTime(today.year, today.month, 1);
+    int daysInMonth = _daysInMonth(now.year, now.month);
 
     // List to store the dates
     List<String> newDates = [];
@@ -111,7 +111,10 @@ class _BookingAppState extends State<BookingApp> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
+        
         itemBuilder: (context, index) {
+          int dayNumber = int.parse(dates[index]);
+          String dayName = days[DateTime(DateTime.now().year, DateTime.now().month, dayNumber).weekday % 7];
           return GestureDetector(
             onTap: () {
               // Handle date selection here
@@ -129,7 +132,7 @@ class _BookingAppState extends State<BookingApp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    days[index % 7],  // Repeat days based on the current day of the week
+                    dayName,  // Repeat days based on the current day of the week
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
