@@ -109,53 +109,59 @@ class _BookingAppState extends State<BookingApp> {
 
   // Widget for the calendar
   Widget _buildCalendar() {
-    return SizedBox(
-      height: 100,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: dates.length,
-        itemBuilder: (context, index) {
-          int dayNumber = int.parse(dates[index]);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        height: 100,
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color:
+                Colors.green, // Background color for the entire scrollable area
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: dates.length,
+            itemBuilder: (context, index) {
+              int dayNumber = int.parse(dates[index]);
 
-          String dayName = days[
-              DateTime(DateTime.now().year, DateTime.now().month, dayNumber)
-                      .weekday %
-                  7];
-          return GestureDetector(
-            onTap: () {
-              // Handle date selection here
-              print("Selected date: ${dates[index]}");
+              String dayName = days[
+                  DateTime(DateTime.now().year, DateTime.now().month, dayNumber)
+                          .weekday %
+                      7];
+              return GestureDetector(
+                onTap: () {
+                  // Handle date selection here
+                  print("Selected date: ${dates[index]}");
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  width: 60,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        dayName, // Repeat days based on the current day of the week
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        dates[index],
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
             },
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              width: 60,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.black, width: 1),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    dayName, // Repeat days based on the current day of the week
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    dates[index],
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
