@@ -108,50 +108,70 @@ class _BookingAppState extends State<BookingApp> {
   // }
 
   // Widget for the calendar
+  int? selectedIndex;
+  @override
   Widget _buildCalendar() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 100,
+    return SizedBox(
+      height: 120,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color:
-                Colors.green, // Background color for the entire scrollable area
-            borderRadius: BorderRadius.circular(12),
+            color: Colors.blueGrey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12.0),
           ),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: dates.length,
             itemBuilder: (context, index) {
               int dayNumber = int.parse(dates[index]);
-
               String dayName = days[
                   DateTime(DateTime.now().year, DateTime.now().month, dayNumber)
                           .weekday %
                       7];
+
+              bool isSelected =
+                  selectedIndex == index; // Check if the date is selected
+
               return GestureDetector(
                 onTap: () {
-                  // Handle date selection here
-                  print("Selected date: ${dates[index]}");
+                  setState(() {
+                    selectedIndex = index; // Update the selected date
+                  });
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8),
-                  width: 60,
+                  width: 80,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? Colors.blue // Blue background for selected date
+                        : Colors
+                            .transparent, // Transparent background for unselected
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        dayName, // Repeat days based on the current day of the week
-                        style: const TextStyle(
+                        dayName,
+                        style: TextStyle(
+                          color: isSelected
+                              ? Colors.white
+                              : Colors.black, // White text on selected
                           fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         dates[index],
-                        style: const TextStyle(
-                          fontSize: 16,
+                        style: TextStyle(
+                          color: isSelected
+                              ? Colors.white
+                              : Colors.black, // White text on selected
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
