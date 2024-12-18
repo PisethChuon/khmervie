@@ -52,8 +52,8 @@ class _BookingAppState extends State<BookingApp> {
     return '${_monthName(date.month)} ${(date.year)}';
   }
 
+  // Convert month number to name
   _monthName(int month) {
-    // Convert month number to name
     List<String> monthNames = [
       'January',
       'February',
@@ -71,12 +71,12 @@ class _BookingAppState extends State<BookingApp> {
     return monthNames[month - 1];
   }
 
-  // Generate the dates for the current month dynamically
+  // Generate 30 consecutive days starting from today
   void _generate30DayCycleDates() {
     DateTime now = DateTime.now();
     List<String> newDates = [];
+    // Generate the dates for the current month dynamically
 
-    // Generate 30 consecutive days starting from today
     for (int i = 0; i < 30; i++) {
       DateTime date =
           now.add(Duration(days: i)); // Add 'i' days to the current day
@@ -111,9 +111,8 @@ class _BookingAppState extends State<BookingApp> {
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
-
             ),
-            ),
+          ),
 
           const SizedBox(height: 16.0),
           _buildCalendar(),
