@@ -19,6 +19,7 @@ class _BookingAppState extends State<BookingApp> {
   final ScrollController _scrollController = ScrollController();
   String currentMonth = '';
 
+  // Maintenant state
   @override
   void initState() {
     super.initState();
@@ -31,9 +32,8 @@ class _BookingAppState extends State<BookingApp> {
     });
   }
 
+  // Estimate the visible index based on the scroll offset
   void _onScroll() {
-    // Estimate the visible index based on the scroll offset
-
     int visibleIndex = (_scrollController.offset / 80).floor();
     if (visibleIndex >= 0 && visibleIndex < dates.length) {
       String newMonth = _getMonthFromIndex(visibleIndex);
@@ -45,8 +45,8 @@ class _BookingAppState extends State<BookingApp> {
     }
   }
 
+  // Calculate the corresponding date and month
   String _getMonthFromIndex(int index) {
-    // Calculate the corresponding date and month
     DateTime now = DateTime.now();
     DateTime date = now.add(Duration(days: index));
     return '${_monthName(date.month)} ${date.year}';
@@ -56,24 +56,24 @@ class _BookingAppState extends State<BookingApp> {
     // Convert month number to name
     List<String> monthNames = [
       'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December'
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
     ];
     return monthNames[month - 1];
   }
 
   // Generate the dates for the current month dynamically
   void _generate30DayCycleDates() {
-    DateTime now = DateTime.now(); // Current date
+    DateTime now = DateTime.now();
     List<String> newDates = [];
 
     // Generate 30 consecutive days starting from today
@@ -103,7 +103,6 @@ class _BookingAppState extends State<BookingApp> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Display the current month
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
@@ -112,8 +111,9 @@ class _BookingAppState extends State<BookingApp> {
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
+
             ),
-          ),
+            ),
 
           const SizedBox(height: 16.0),
           _buildCalendar(),
