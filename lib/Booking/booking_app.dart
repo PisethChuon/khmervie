@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Khmervie/Utils/util.dart';
+import 'package:flutter/services.dart';
 
 class BookingApp extends StatefulWidget {
   const BookingApp({super.key});
@@ -10,16 +10,17 @@ class BookingApp extends StatefulWidget {
 
 class _BookingAppState extends State<BookingApp> {
   String dropdownValue = 'December';
+  int selectedIndex = 0; // Added selectedIndex
+  // String _previousMonth = '';
 
   // Calendar data
   List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
   List<String> dates = [];
 
-  // Declear varialble
+  // Declare variables
   final ScrollController _scrollController = ScrollController();
   String currentMonth = '';
 
-  // Maintenant state
   @override
   void initState() {
     super.initState();
@@ -32,13 +33,22 @@ class _BookingAppState extends State<BookingApp> {
     });
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   // Estimate the visible index based on the scroll offset
   void _onScroll() {
     int visibleIndex = (_scrollController.offset / 80).floor();
     if (visibleIndex >= 0 && visibleIndex < dates.length) {
       String newMonth = _getMonthFromIndex(visibleIndex);
       if (newMonth != currentMonth) {
+        HapticFeedback.lightImpact();
+
         setState(() {
+          // _previousMonth = currentMonth;
           currentMonth = newMonth;
         });
       }
@@ -49,12 +59,12 @@ class _BookingAppState extends State<BookingApp> {
   String _getMonthFromIndex(int index) {
     DateTime now = DateTime.now();
     DateTime date = now.add(Duration(days: index));
-    return '${_monthName(date.month)} ${(date.year)}';
+    return '${_monthName(date.month)} ${date.year}';
   }
 
   // Convert month number to name
-  _monthName(int month) {
-    List<String> monthNames = [
+  String _monthName(int month) {
+    final monthNames = [
       'January',
       'February',
       'March',
@@ -75,62 +85,43 @@ class _BookingAppState extends State<BookingApp> {
   void _generate30DayCycleDates() {
     DateTime now = DateTime.now();
     List<String> newDates = [];
-    // Generate the dates for the current month dynamically
 
     for (int i = 0; i < 30; i++) {
-      DateTime date =
-          now.add(Duration(days: i)); // Add 'i' days to the current day
-      String day = days[date.weekday % 7]; // Get day name (Sun, Mon, ...)
-      String dateFormatted = "${date.day.toString().padLeft(2, '0')}";
+      DateTime date = now.add(Duration(days: i));
+      int dayIndex = date.weekday == 7 ? 0 : date.weekday;
+      String dayName = days[dayIndex];
+      String dateFormatted = date.day.toString().padLeft(2, '0');
 
-      newDates.add("$dateFormatted"); // Combine day name and date
+      newDates.add(dateFormatted);
     }
 
     setState(() {
-      dates = newDates; // Update the list with 30 days
+      dates = newDates;
     });
   }
 
-  int isSelectedDayIndex = 2;
-
+  // Display content
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Appointment'),
-        centerTitle: true,
+        title: Text(currentMonth),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              currentMonth.isEmpty ? 'Loading...' : currentMonth,
-              style: const TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 16.0),
-          _buildCalendar(),
-          const SizedBox(height: 8.0),
-          _morningSlots(),
-          const SizedBox(height: 8.0),
-          _afternoonSlots(),
-          const SizedBox(height: 8.0),
-          _eveningSlots(),
-          const SizedBox(height: 16.0),
-          // _confirmAppointment(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildCalendar(),
+            _morningSlots(),
+            _afternoonSlots(),
+            _eveningSlots(),
+            _confirmAppointment(),
+          ],
+        ),
       ),
     );
   }
 
-  // Widget for the calendar
-  int? selectedIndex;
+  // Build Calendar
   Widget _buildCalendar() {
     return SizedBox(
       height: 120,
@@ -147,19 +138,16 @@ class _BookingAppState extends State<BookingApp> {
             itemCount: dates.length,
             controller: _scrollController,
             itemBuilder: (context, index) {
-              int dayNumber = int.parse(dates[index]);
-              String dayName = days[
-                  DateTime(DateTime.now().year, DateTime.now().month, dayNumber)
-                          .weekday %
-                      7];
+              DateTime now = DateTime.now();
+              DateTime date = now.add(Duration(days: index));
 
-              bool isSelected =
-                  selectedIndex == index; // Check if the date is selected
+              String dayName = days[date.weekday % 7];
+              bool isSelected = selectedIndex == index;
 
               return GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedIndex = index; // Update the selected date
+                    selectedIndex = index;
                   });
                 },
                 child: Container(
@@ -167,10 +155,7 @@ class _BookingAppState extends State<BookingApp> {
                   width: 80,
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: isSelected
-                        ? Colors.green // Green background for selected date
-                        : Colors
-                            .transparent, // Transparent background for unselected
+                    color: isSelected ? Colors.green : Colors.transparent,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
@@ -179,9 +164,7 @@ class _BookingAppState extends State<BookingApp> {
                       Text(
                         dayName,
                         style: TextStyle(
-                          color: isSelected
-                              ? Colors.white
-                              : Colors.black, // White text on selected
+                          color: isSelected ? Colors.white : Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0,
                         ),
@@ -190,9 +173,7 @@ class _BookingAppState extends State<BookingApp> {
                       Text(
                         dates[index],
                         style: TextStyle(
-                          color: isSelected
-                              ? Colors.white
-                              : Colors.black, // White text on selected
+                          color: isSelected ? Colors.white : Colors.black,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -256,30 +237,28 @@ class _BookingAppState extends State<BookingApp> {
     );
   }
 
-  // Slot Section Template
+  // Confirm Appointment
   Widget _confirmAppointment() {
     return Center(
       child: ElevatedButton(
         onPressed: () {
-          // TODO: Implement appointment confirmation logic
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Appointment Confirmation Pressed')),
+            const SnackBar(content: Text('Appointment Confirmation Pressed')),
           );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green, // Set the button color to green
-          padding: const EdgeInsets.symmetric(
-              horizontal: 24.0, vertical: 12.0), // Add padding
+          backgroundColor: Colors.green,
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0), // Rounded corners
+            borderRadius: BorderRadius.circular(8.0),
           ),
         ),
         child: const Text(
           'Confirm Appointment',
           style: TextStyle(
-            fontSize: 16.0, // Font size
-            fontWeight: FontWeight.bold, // Bold text
-            color: Colors.white, // Text color
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),
