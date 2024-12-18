@@ -49,10 +49,10 @@ class _BookingAppState extends State<BookingApp> {
   String _getMonthFromIndex(int index) {
     DateTime now = DateTime.now();
     DateTime date = now.add(Duration(days: index));
-    return '${_monthName(date.month)} ${date.year}';
+    return '${_monthName(date.month)} ${(date.year)}';
   }
 
-  String _monthName(int month) {
+  _monthName(int month) {
     // Convert month number to name
     List<String> monthNames = [
       'January',
