@@ -25,10 +25,14 @@ class SlotSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16.0),
-          Wrap(
-            spacing: 8.0,
-            runSpacing: 4.0,
-            children: times.map((time) => Chip(label: Text(time))).toList(),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              alignment: WrapAlignment.start,
+              spacing: 8.0,
+              runSpacing: 4.0,
+              children: times.map((time) => Chip(label: Text(time))).toList(),
+            ),
           ),
         ],
       ),
@@ -55,7 +59,7 @@ class AfternoonSlots extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlotSection(
       title: 'Afternoon Slots',
-      times: List.generate(5, (index) => '${index + 1}:00 PM'),
+      times: List.generate(2, (index) => '${index + 1}:00 PM'),
     );
   }
 }

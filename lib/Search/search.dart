@@ -57,6 +57,7 @@ class _SearchBarAppState extends State<SearchBarApp> {
             return List<ListTile>.generate(5, (int index) {
               final String item = 'Test $index, Dr. Dens $index';
               return ListTile(
+                
                 title: Text(item),
                 onTap: () {
                   setState(() {
