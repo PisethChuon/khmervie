@@ -29,9 +29,16 @@ class _BookingAppState extends State<BookingApp> {
                 currentMonth = month;
               });
             }),
+            const SizedBox(height: 16.0),
             const MorningSlots(),
+            
+            const SizedBox(height: 16.0),
             const AfternoonSlots(),
+
+            const SizedBox(height: 16.0),
             const EveningSlots(),
+
+            const SizedBox(height: 32.0),
             const ConfirmAppointmentButton(),
           ],
         ),
