@@ -4,16 +4,13 @@ import 'package:flutter/services.dart';
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({super.key, required this.onMonthChanged});
   final Function(String) onMonthChanged;
-  
 
   @override
   State<CalendarWidget> createState() => _CalendarWidgetState();
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
-  // String dropdownValue = 'December';
-  int selectedIndex = 0; // Added selectedIndex
-  // String _previousMonth = '';
+  int selectedIndex = 0;
 
   // Calendar data
   List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
@@ -103,7 +100,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     });
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
