@@ -10,12 +10,7 @@ class BookingApp extends StatefulWidget {
 }
 
 class _BookingAppState extends State<BookingApp> {
-  // Calendar data
-  List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
-  List<String> dates = [];
-
   // Declare variables
-  final ScrollController _scrollController = ScrollController();
   String currentMonth = '';
 
   // Display content
@@ -33,7 +28,6 @@ class _BookingAppState extends State<BookingApp> {
                 currentMonth = month;
               });
             }),
-            
             _morningSlots(),
             _afternoonSlots(),
             _eveningSlots(),
@@ -44,8 +38,7 @@ class _BookingAppState extends State<BookingApp> {
     );
   }
 
-  // Build Calendar
-
+  // Build slot template
   Widget _slotSection({required String title, required List<String> times}) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
