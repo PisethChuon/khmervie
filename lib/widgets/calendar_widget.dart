@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CalendarWidget extends StatefulWidget {
-  final Function(int) onDateSelected;
-
-  const CalendarWidget({super.key, required this.onDateSelected});
+  const CalendarWidget({super.key, required this.onMonthChanged});
+  final Function(String) onMonthChanged;
+  
 
   @override
   State<CalendarWidget> createState() => _CalendarWidgetState();
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
+  // String dropdownValue = 'December';
+  int selectedIndex = 0; // Added selectedIndex
+  // String _previousMonth = '';
+
+  // Calendar data
   List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Th', 'Fri', 'Sat'];
   List<String> dates = [];
-  int selectedIndex = 0;
+
+  // Declare variables
   final ScrollController _scrollController = ScrollController();
   String currentMonth = '';
 
@@ -22,6 +28,11 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     super.initState();
     _generate30DayCycleDates();
     _scrollController.addListener(_onScroll);
+
+    setState(() {
+      currentMonth =
+          '${_monthName(DateTime.now().month)} ${DateTime.now().year}';
+    });
   }
 
   @override
@@ -30,6 +41,50 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     super.dispose();
   }
 
+  // Estimate the visible index based on the scroll offset
+  void _onScroll() {
+    int visibleIndex = (_scrollController.offset / 80).floor();
+    if (visibleIndex >= 0 && visibleIndex < dates.length) {
+      String newMonth = _getMonthFromIndex(visibleIndex);
+      if (newMonth != currentMonth) {
+        HapticFeedback.lightImpact();
+
+        setState(() {
+          // _previousMonth = currentMonth;
+          currentMonth = newMonth;
+        });
+        widget.onMonthChanged(currentMonth);
+      }
+    }
+  }
+
+  // Calculate the corresponding date and month
+  String _getMonthFromIndex(int index) {
+    DateTime now = DateTime.now();
+    DateTime date = now.add(Duration(days: index));
+    return '${_monthName(date.month)} ${date.year}';
+  }
+
+  // Convert month number to name
+  String _monthName(int month) {
+    final monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+    return monthNames[month - 1];
+  }
+
+  // Generate 30 consecutive days starting from today
   void _generate30DayCycleDates() {
     DateTime now = DateTime.now();
     List<String> newDates = [];
@@ -37,8 +92,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     for (int i = 0; i < 30; i++) {
       DateTime date = now.add(Duration(days: i));
       int dayIndex = date.weekday == 7 ? 0 : date.weekday;
-      String dayName = days[dayIndex];      
+      String dayName = days[dayIndex];
       String dateFormatted = date.day.toString().padLeft(2, '0');
+
       newDates.add(dateFormatted);
     }
 
@@ -47,35 +103,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     });
   }
 
-  void _onScroll() {
-  int visibleIndex = (_scrollController.offset / 80).floor();  // Determine the visible index based on the scroll offset
-  if (visibleIndex >= 0 && visibleIndex < dates.length) {
-    String newMonth = _getMonthFromIndex(visibleIndex);  // Get the month from the visible index
-    if (newMonth != currentMonth) {  // Only update if the month has changed
-      HapticFeedback.lightImpact();  // Provide haptic feedback
-      setState(() {
-        currentMonth = newMonth;  // Update the displayed month
-      });
-    }
-  }
-}
-
-
-  String _getMonthFromIndex(int index) {
-  DateTime now = DateTime.now();
-  DateTime date = now.add(Duration(days: index));  // Calculate the date based on the index
-  return '${_monthName(date.month)} ${date.year}';  // Format the month and year
-}
-
-
-  String _monthName(int month) {
-    final monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June', 
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    return monthNames[month - 1];
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -101,7 +129,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
               return GestureDetector(
                 onTap: () {
-                  widget.onDateSelected(index);
                   setState(() {
                     selectedIndex = index;
                   });
