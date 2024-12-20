@@ -43,12 +43,8 @@ class _SlotSectionState extends State<SlotSection> {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      
                       selectedTimes[time] = !isSelected;
-                    print('Tapped onL $time');
                     });
-                    
-                    
                   },
                   child: Chip(
                     label: Text(time),
