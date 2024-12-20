@@ -31,7 +31,19 @@ class SlotSection extends StatelessWidget {
               alignment: WrapAlignment.start,
               spacing: 8.0,
               runSpacing: 4.0,
-              children: times.map((time) => Chip(label: Text(time))).toList(),
+              children: times.map((time) {
+              return GestureDetector(
+                onTap: () {
+                  // Handle the tap here
+                  print('Tapped on: $time');
+                  // You can perform any action you want here, such as navigating or updating a state
+                },
+                child: Chip(
+                  label: Text(time),
+                ),
+              );
+            }).toList(),
+              
             ),
           ),
         ],
