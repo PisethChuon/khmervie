@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SlotSection extends StatelessWidget {
+class SlotSection extends StatefulWidget {
   final String title;
   final List<String> times;
 
@@ -11,6 +11,13 @@ class SlotSection extends StatelessWidget {
   });
 
   @override
+  State<SlotSection> createState() => _SlotSectionState();
+}
+
+class _SlotSectionState extends State<SlotSection> {
+  Map<String, bool> selectedTimes = {};
+  bool isSelected = false;
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -18,7 +25,7 @@ class SlotSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            widget.title,
             style: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
@@ -31,13 +38,21 @@ class SlotSection extends StatelessWidget {
               alignment: WrapAlignment.start,
               spacing: 8.0,
               runSpacing: 4.0,
-              children: times.map((time) {
+              children: widget.times.map((time) {
+                bool isSelected = selectedTimes[time] ?? false;
                 return GestureDetector(
                   onTap: () {
+                    setState(() {
+                      
+                      selectedTimes[time] = !isSelected;
                     print('Tapped onL $time');
+                    });
+                    
+                    
                   },
                   child: Chip(
                     label: Text(time),
+                    backgroundColor: isSelected ? Colors.green : Colors.white,
                   ),
                 );
               }).toList(),
