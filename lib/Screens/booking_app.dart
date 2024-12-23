@@ -19,11 +19,14 @@ class _BookingAppState extends State<BookingApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentMonth),
+        title: const Text('Appointment', style: TextStyle(fontSize: 24.0),),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(height: 16.0),
+            Text(currentMonth, style: const TextStyle(fontSize: 24.0)), // Current Month
+            const SizedBox(height: 24.0),
             CalendarWidget(onMonthChanged: (month) {
               setState(() {
                 currentMonth = month;
