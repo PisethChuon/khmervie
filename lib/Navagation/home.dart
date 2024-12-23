@@ -1,5 +1,5 @@
 import 'package:Khmervie/Screens/booking_app.dart';
-import 'package:Khmervie/Screens/profile.dart';
+import 'package:Khmervie/Screens/profiles/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/home.dart';
 
