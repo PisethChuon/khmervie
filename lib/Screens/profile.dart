@@ -19,6 +19,30 @@ class Profile extends StatelessWidget {
           ),
         ],
       ),
+      body: Column(
+        children: [
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const ListTile(
+              leading: CircleAvatar(
+                radius: 25,
+                backgroundImage: AssetImage('assets/icons/Khmervie.png'),
+              ),
+              title: Text(
+                'Piseth Chuon',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text('Male'),
+              trailing: Icon(Icons.arrow_forward_ios),
+              // onTap: () {
+              //   print('Tapped');
+              // },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
