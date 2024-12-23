@@ -55,7 +55,17 @@ class Profile extends StatelessWidget {
                     icon: Icons.calendar_today,
                     label: 'Date of birth',
                     value: '27/12/2003',
-                  )
+                  ),
+                  buildDetailItem(context,
+                      icon: Icons.monitor_weight,
+                      label: 'Weight',
+                      value: '61.0'),
+                  buildDetailItem(context,
+                      icon: Icons.height, label: 'Height', value: '170.0'),
+                  buildDetailItem(context,
+                      icon: Icons.calculate,
+                      label: 'BMI',
+                      value: '21.11 (Normal)'),
                 ],
               ),
             ),
@@ -79,35 +89,38 @@ Widget buildDetailItem(
       borderRadius: BorderRadius.circular(12),
     ),
     child: ListTile(
-        leading: CircleAvatar(
-          radius: 20,
-          backgroundColor: Colors.blue,
-          child: Icon(icon, color: Colors.white),
-        ),
-        title: Text(
-          label,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              value,
-              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-              // Icon(Icons.arrow_forward_ios),
-            ),
-            const SizedBox(width: 8),
-            const Icon(
-              Icons.arrow_forward_ios,
-              size: 16,
-              color: Colors.grey,
-            ),
-          ],
-        )
+      leading: CircleAvatar(
+        radius: 20,
+        backgroundColor: Colors.blue,
+        child: Icon(icon, color: Colors.white),
+      ),
+      title: Text(
+        label,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+      ),
+      // title: Text(
+      //   label,
+      //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+      // ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            value,
+            style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+          ),
+          const SizedBox(width: 8),
+          const Icon(
+            Icons.arrow_forward_ios,
+            size: 16,
+            color: Colors.grey,
+          )
+        ],
+      ),
 
-        // onTap: () {
-        //   print('$label tapped');
-        // },
-        ),
+      // onTap: () {
+      //   print('$label tapped');
+      // },
+    ),
   );
 }
