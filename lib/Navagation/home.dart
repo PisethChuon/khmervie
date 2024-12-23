@@ -1,4 +1,5 @@
 import 'package:Khmervie/Screens/booking_app.dart';
+import 'package:Khmervie/Screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:Khmervie/screens/homes/home.dart';
 
@@ -15,7 +16,7 @@ class _HomeBarNavigatorState extends State<HomeBarNavigator> {
   static final List<Widget> _widgetOptions = <Widget>[
     const Homes(),
     const BookingApp(),
-    const Text('Profile'),
+    const Profile(),
   ];
 
   void _onItemTapped(int index) {
