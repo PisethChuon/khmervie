@@ -20,32 +20,33 @@ class Profile extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: Column(
           children: [
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('assets/icons/Khmervie.png'),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ListTile(
+                  leading: const CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage('assets/icons/Khmervie.png'),
+                  ),
+                  title: const Text(
+                    'Piseth Chuon',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: const Text(
+                    'Male',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios),
                 ),
-                title: Text(
-                  'Piseth Chuon',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  'Male',
-                  style: TextStyle(fontSize: 16),
-                ),
-                trailing: Icon(Icons.arrow_forward_ios),
-                // onTap: () {
-                //   print('Tapped');
-                // },
               ),
             ),
+            const SizedBox(height: 16),
             // Details Info
             Expanded(
               child: ListView(
@@ -56,16 +57,24 @@ class Profile extends StatelessWidget {
                     label: 'Date of birth',
                     value: '27/12/2003',
                   ),
-                  buildDetailItem(context,
-                      icon: Icons.monitor_weight,
-                      label: 'Weight',
-                      value: '61.0'),
-                  buildDetailItem(context,
-                      icon: Icons.height, label: 'Height', value: '170.0'),
-                  buildDetailItem(context,
-                      icon: Icons.calculate,
-                      label: 'BMI',
-                      value: '21.11 (Normal)'),
+                  buildDetailItem(
+                    context,
+                    icon: Icons.monitor_weight,
+                    label: 'Weight',
+                    value: '61.0',
+                  ),
+                  buildDetailItem(
+                    context,
+                    icon: Icons.height,
+                    label: 'Height',
+                    value: '170.0',
+                  ),
+                  buildDetailItem(
+                    context,
+                    icon: Icons.calculate,
+                    label: 'BMI',
+                    value: '21.11 (Normal)',
+                  ),
                 ],
               ),
             ),
@@ -84,43 +93,38 @@ Widget buildDetailItem(
 }) {
   return Card(
     elevation: 2,
-    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+    margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
     ),
-    child: ListTile(
-      leading: CircleAvatar(
-        radius: 20,
-        backgroundColor: Colors.blue,
-        child: Icon(icon, color: Colors.white),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: ListTile(
+        leading: CircleAvatar(
+          radius: 20,
+          backgroundColor: Colors.green,
+          child: Icon(icon, color: Colors.white),
+        ),
+        title: Text(
+          label,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              value,
+              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+            ),
+            const SizedBox(width: 8),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: Colors.grey,
+            ),
+          ],
+        ),
       ),
-      title: Text(
-        label,
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-      ),
-      // title: Text(
-      //   label,
-      //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-      // ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            value,
-            style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-          ),
-          const SizedBox(width: 8),
-          const Icon(
-            Icons.arrow_forward_ios,
-            size: 16,
-            color: Colors.grey,
-          )
-        ],
-      ),
-
-      // onTap: () {
-      //   print('$label tapped');
-      // },
     ),
   );
 }
