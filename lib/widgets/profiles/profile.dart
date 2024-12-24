@@ -1,4 +1,7 @@
+import 'package:Khmervie/Drawer_Widget/drawer.dart';
+import 'package:Khmervie/widgets/profiles/edit_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class Profiles extends StatelessWidget {
   const Profiles({super.key});
@@ -88,30 +91,50 @@ Widget buildDetailItem(
     ),
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 20,
-          backgroundColor: Colors.green,
-          child: Icon(icon, color: Colors.white),
-        ),
-        title: Text(
-          label,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              value,
-              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-            ),
-            const SizedBox(width: 8),
-            const Icon(
-              Icons.arrow_forward_ios,
-              size: 16,
-              color: Colors.grey,
-            ),
-          ],
+      child: GestureDetector(
+        onTap: () {
+          // Navigate to different pages base on the label or value
+          if (label == 'Date of birth') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DateOfBirth(label: label, value: value),
+              ),
+            );
+          } else if (label == 'Weight') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Weight(label: label, value: value),
+              ),
+            );
+          }
+        },
+        child: ListTile(
+          leading: CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.green,
+            child: Icon(icon, color: Colors.white),
+          ),
+          title: Text(
+            label,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                value,
+                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+              ),
+              const SizedBox(width: 8),
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Colors.grey,
+              ),
+            ],
+          ),
         ),
       ),
     ),
