@@ -88,8 +88,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
     for (int i = 0; i < 30; i++) {
       DateTime date = now.add(Duration(days: i));
-      int dayIndex = date.weekday == 7 ? 0 : date.weekday;
-      String dayName = days[dayIndex];
       String dateFormatted = date.day.toString().padLeft(2, '0');
 
       newDates.add(dateFormatted);
