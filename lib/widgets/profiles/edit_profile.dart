@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// DateOfBirth
 class DateOfBirth extends StatelessWidget {
   final String label;
   final String value;
@@ -10,6 +11,7 @@ class DateOfBirth extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+// Big Text bith
         title: Text(label),
       ),
       body: const Center(
@@ -19,9 +21,12 @@ class DateOfBirth extends StatelessWidget {
   }
 }
 
+// Button Save
+
 class Weight extends StatelessWidget {
   final String label;
-  const Weight({super.key, required this.label});
+  final String value;
+  const Weight({super.key, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
