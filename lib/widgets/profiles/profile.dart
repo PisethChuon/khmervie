@@ -1,7 +1,5 @@
-import 'package:Khmervie/Drawer_Widget/drawer.dart';
-import 'package:Khmervie/widgets/profiles/edit_profile.dart';
+import 'package:Khmervie/widgets/profiles/users_detail_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class Profiles extends StatelessWidget {
   const Profiles({super.key});
@@ -106,6 +104,26 @@ Widget buildDetailItem(
               context,
               MaterialPageRoute(
                 builder: (context) => Weight(label: label, value: value),
+              ),
+            );
+          } else if (label == 'Height') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Height(
+                  label: label,
+                  value: value,
+                ),
+              ),
+            );
+          } else if (label == 'BMI') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BMI(
+                  label: label,
+                  value: value,
+                ),
               ),
             );
           }
