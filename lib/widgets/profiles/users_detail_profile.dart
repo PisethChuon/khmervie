@@ -22,8 +22,14 @@ class DateOfBirth extends StatelessWidget {
       appBar: AppBar(
         title: Text(label),
       ),
-      body: Center(
-        child: Text(value),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: value,
+          ),
+        ),
       ),
     );
   }
@@ -40,10 +46,11 @@ class Weight extends StatelessWidget {
       appBar: AppBar(
         title: Text(label),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: TextField(
           decoration: InputDecoration(
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             hintText: value,
           ),
         ),
@@ -64,8 +71,14 @@ class Height extends StatelessWidget {
       appBar: AppBar(
         title: Text(label),
       ),
-      body: Center(
-        child: Text(value),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: value,
+          ),
+        ),
       ),
     );
   }
@@ -83,8 +96,14 @@ class BMI extends StatelessWidget {
       appBar: AppBar(
         title: Text(label),
       ),
-      body: Center(
-        child: Text(value),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: value,
+          ),
+        ),
       ),
     );
   }
