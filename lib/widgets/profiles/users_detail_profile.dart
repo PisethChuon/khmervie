@@ -22,8 +22,8 @@ class DateOfBirth extends StatelessWidget {
       appBar: AppBar(
         title: Text(label),
       ),
-      body: const Center(
-        child: Text('Details about Date of Birth'),
+      body: Center(
+        child: Text(value),
       ),
     );
   }
@@ -41,7 +41,12 @@ class Weight extends StatelessWidget {
         title: Text(label),
       ),
       body: Center(
-        child: Text(value),
+        child: TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: value,
+          ),
+        ),
       ),
     );
   }
