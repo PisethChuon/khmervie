@@ -1,8 +1,26 @@
+/* 
+
+Summary user profile
+
+It is screen for summary user profile with a click to detail information at "users_detail_profile"
+
+Author: Piseth Chuon
+
+*/
+
 import 'package:Khmervie/widgets/profiles/users_detail_profile.dart';
 import 'package:flutter/material.dart';
 
 class Profiles extends StatelessWidget {
   const Profiles({super.key});
+  
+  // Calculate BMI Method
+  double calculateBMI (double weight, double height) {
+    if (height == 0) {
+      return 0;
+    }
+    return weight / (height * height);  // BMI formula
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +82,7 @@ class Profiles extends StatelessWidget {
                   context,
                   icon: Icons.calculate,
                   label: 'BMI',
-                  value: '21.11 (Normal)',
+                  value: '21.11 ',
                 ),
               ],
             ),
