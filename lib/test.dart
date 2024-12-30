@@ -1,3 +1,7 @@
+// Modle class API
+
+// id, title, author
+
 class Book {
   final int id;
   final String title;
