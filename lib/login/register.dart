@@ -17,12 +17,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _signup() async {
     final response = await http.post(
-      Uri.parse('http://localhost:3000/signup'),
+      Uri.parse('http://192.168.13.73:3000/signup'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'name': _nameController.text,
         'email': _emailController.text,
-        'password': _passwordController,
+        'password': _passwordController.text,
       }),
     );
 
