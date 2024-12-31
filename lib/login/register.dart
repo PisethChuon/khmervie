@@ -40,6 +40,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ],
         ),
       );
+    } else {
+      final error = json.decode(response.body)['message'];
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text(error),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context), child: Text('Ok'))
+          ],
+        ),
+      );
     }
   }
 
