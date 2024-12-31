@@ -25,6 +25,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'password': _passwordController,
       }),
     );
+
+    if (response.statusCode == 201) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Success!'),
+          content: Text('User registered successfully!'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
