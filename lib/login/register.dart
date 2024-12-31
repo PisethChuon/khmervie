@@ -11,18 +11,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sign Up'),),
-      body: Padding(padding: const EdgeInsets.all(16.0),
-      // Name
-      child: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(labelText: 'Name'),
-          )
-        ],
+      appBar: AppBar(
+        title: const Text('Sign Up'),
       ),
-      // Email
-      // Password
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            // Name
+            TextField(
+              decoration: InputDecoration(labelText: 'Name'),
+            ),
+            // Email
+            TextField(
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+
+            // Password
+            TextField(
+              decoration: InputDecoration(labelText: 'Password'),
+            ),
+          ],
+        ),
       ),
     );
   }
