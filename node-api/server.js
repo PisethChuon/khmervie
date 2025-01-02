@@ -66,6 +66,16 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+function validatePassword(password) {
+  // at least 8 characters
+
+  const minLength = 8;
+
+  if (password.length < minLength) {
+    return {valid: false, message: 'Password must be at least $} '}
+  }
+}
+
 // Start Server
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${port}`);
