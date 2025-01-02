@@ -17,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _signup() async {
     final response = await http.post(
-      Uri.parse('http://192.168.195.105:3000/signup'),
+      Uri.parse('http://localhost:3000/signup'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'name': _nameController.text,
@@ -67,6 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           children: [
             // Name
+
             TextField(
               controller: _nameController,
               decoration: InputDecoration(labelText: 'Name'),
@@ -86,6 +87,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               height: 20,
             ),
+            // ElevatedButton(
+            //   onPressed: _signup,
+            //   child: Text('Sign Up'),
+            // ),
             ElevatedButton(
               onPressed: _signup,
               child: Text('Sign Up'),
