@@ -30,12 +30,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Success!'),
-          content: Text('User registered successfully!'),
+          title: const Text('Success!'),
+          content: const Text('User registered successfully!'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Ok'),
+              child: const Text('Ok'),
             ),
           ],
         ),
@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Error'),
+          title: const Text('Error'),
           content: Text(error),
           actions: [
             TextButton(
