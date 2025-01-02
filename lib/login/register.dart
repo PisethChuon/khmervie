@@ -17,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _signup() async {
     final response = await http.post(
-      Uri.parse('http://192.168.13.73:3000/signup'),
+      Uri.parse('http://192.168.195.105:3000/signup'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'name': _nameController.text,
@@ -63,7 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         title: const Text('Sign Up'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             // Name
