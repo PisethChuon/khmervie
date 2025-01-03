@@ -30,7 +30,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 .packages
-.env
+process.env
 ios/Pods/
 
 
