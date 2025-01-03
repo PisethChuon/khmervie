@@ -114,7 +114,7 @@ function validatePassword(password) {
   return { valid: true, message: "Password is valid." };
 }
 
-const password = "T";
+const password = "";
 const result = validatePassword(password);
 if (!result.valid) {
   console.log(result.message);
