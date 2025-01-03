@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const mysql = require("mysql2");
+require("dotenv").config();
 
 const app = express();
 const port = 3000;
@@ -11,10 +12,15 @@ app.use(bodyParser.json());
 
 // MySQL Connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  // host: process.env.DB_HOST,
+  // user: process.env.DB_USER,
+  // password: process.env.DB_PASSWORD,
+  // database: process.env.DB_NAME,
+
+  host: "localhost",
+  user: "root",
+  password: "12345678",
+  database: "testdb1",
 });
 
 db.connect((err) => {
@@ -67,8 +73,7 @@ function validatePassword(password) {
       message: "Password must contain at least one special character.",
     };
   }
-
-  return { valid: true, message: "Password is valid." };
+  return { valid: true };
 }
 
 // Signup Route
@@ -119,7 +124,6 @@ app.post("/signup", async (req, res) => {
       .json({ message: "Error hashing password", error: error.message });
   }
 });
-
 
 // Start Server
 app.listen(port, "0.0.0.0", () => {
