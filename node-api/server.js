@@ -57,7 +57,6 @@ function validatePassword(password) {
       message: "Password must contain at least one lowercase letter.",
     };
   }
-
   // Password must contain at least one number
   if (!/[0-9]/.test(password)) {
     return {
